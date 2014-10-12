@@ -191,7 +191,15 @@ boardAfterMove[row][col] = turnIndexBeforeMove === 0 ? 'R' : 'B';
 
     ]);
   }
+function getInitialBoard(){
 
+  return  [['', '', '','','','',''],
+  ['', '', '','','','',''],
+  ['', '', '','','','',''],
+  ['', '', '','','','',''],
+  ['', '', '','','','',''],
+  ['', '', '','','','','']];
+}
 
 
 
@@ -258,4 +266,6 @@ function isMoveOk(params) {
   this.isMoveOk = isMoveOk;
 this.getExampleGame = getExampleGame;
 this.getRiddles = getRiddles;
+this.getInitialBoard=getInitialBoard;
+this.createMove = createMove;
 });
