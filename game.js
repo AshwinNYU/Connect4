@@ -56,7 +56,7 @@ angular.module('myApp', ['ngTouch'])
           && $scope.delta.row === row && $scope.delta.col === col;
     }
 
-    scaleBodyService.scaleBody({width: 40, height: 40});
+    scaleBodyService.scaleBody({width: 20, height: 20});
 
     gameService.setGame({
       gameDeveloperEmail: "ashwin.thobbi@gmail.com",
