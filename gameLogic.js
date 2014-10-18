@@ -1,9 +1,8 @@
-
 var h=6;//Rows
 var w=7;//Columns
 
 'use strict';
-angular.module('myApp.gameLogic', []).service('gameLogic', function() {
+angular.module('myApp').service('gameLogic', function() {
 function isEqual(object1, object2) {
   //console.log(JSON.stringify(object1));
   //console.log(JSON.stringify(object2));
@@ -77,6 +76,44 @@ function isTie(board) {
   }
 
 
+  function getInitialBoard(){
+
+    return  [['', '', '','','','',''],
+    ['', '', '','','','',''],
+    ['', '', '','','','',''],
+    ['', '', '','','','',''],
+    ['', '', '','','','',''],
+    ['', '', '','','','','']];
+  }
+
+  function createComputerMove(board, turnIndexBeforeMove) {
+      var possibleMoves = [];
+      var i, j;
+      for (i = 0; i < 6; i++) {
+        for (j = 0; j <7 ; j++) {
+          try {
+            possibleMoves.push(createMove(board, i, j, turnIndexBeforeMove));
+          } catch (e) {
+            // The cell in that position was full.
+          }
+        }
+      }
+      var randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+      return randomMove;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
   function createMove(board, row, col, turnIndexBeforeMove) {
     if (board === undefined) {
       // Initially (at the beginning of the match), the board in state is undefined.
@@ -90,6 +127,21 @@ function isTie(board) {
     if (board[row][col] !== '') {
       throw new Error("One can only make a move in an empty position!");
     }
+
+
+    var count1=0;
+    for(var i=5;i>=0;i--){
+      if(board[i][col]===''){
+        count1++;
+
+      }
+
+    }
+      if(row!==count1-1){
+      throw new Error("One can only make a move in an correct position!");;
+      }
+
+
 
 
     var boardAfterMove = copyObject(board);
@@ -191,15 +243,7 @@ boardAfterMove[row][col] = turnIndexBeforeMove === 0 ? 'R' : 'B';
 
     ]);
   }
-function getInitialBoard(){
 
-  return  [['', '', '','','','',''],
-  ['', '', '','','','',''],
-  ['', '', '','','','',''],
-  ['', '', '','','','',''],
-  ['', '', '','','','',''],
-  ['', '', '','','','','']];
-}
 
 
 
@@ -268,4 +312,5 @@ this.getExampleGame = getExampleGame;
 this.getRiddles = getRiddles;
 this.getInitialBoard=getInitialBoard;
 this.createMove = createMove;
+this.createComputerMove = createComputerMove;
 });
