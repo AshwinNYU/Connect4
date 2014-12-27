@@ -1,42 +1,123 @@
-table {
-  border-collapse: collapse;
+table{
+  margin: 0;
+  display: block;
+  border-spacing: 0;
+  padding: 0;
+  float: left;
 }
+tr{
+  padding: 0;
+}
+
 body {
-  margin: 0px;
-  padding: 0px;
+/*  background-image: url('img/bg.jpg');*/
   overflow:hidden;
+  width: 100%;
+  height: 100%;
 }
-.cell {
-  text-align:center;
-  vertical-align: middle;
-  font-family: "Helvetica";
-  font-size: 1pt;
-  width: 1px;
-  height: 1px;
-  border: 1pt solid black;
-  margin: 0px;
-  padding: 0px;
+.cell{
+  position: relative;
+  float: left;
+  z-index: 20;
+  border-style: none;
+  width: 70px;
+  height: 70px;
 }
-.r {
-  border-right: 1pt  solid black;
+.posit2{
+  position: absolute;
+  display: block;
+  width: 70px;
+  height: 70px;
+  z-index: 10;
 
 }
-.b {
-  border-bottom: 1pt solid black;
+
+.posit3{
+  position: absolute;
+  display: block;
+  width: 70px;
+  height: 70px;
+  z-index: 10;
 
 }
+
+
+/******** ANIMATION **********/
+
 .slowlyAppear {
-  -webkit-animation: slowlyAppear 0.5s linear; /* Chrome, Safari, Opera */
-  animation: slowlyAppear 0.5s linear;
+  -webkit-animation: slowlyAppear 0.5s ease-in-out forwards; /* Chrome, Safari, Opera */
+  animation: slowlyAppear 0.5s ease-in-out forwards;
 }
+
+.rot {
+  -webkit-animation:coinflip 0.75s ease-in;
+  animation:coinflip 0.75s ease-in;
+}
+
+@-webkit-keyframes coinflip {
+  0% {
+    top: -350px;
+  }
+  75% {
+    top: 0px;
+  }
+  80% {
+    top: 20px;
+  }
+  85% {
+    top: 0px;
+  }
+  90% {
+    top: -10px;
+  }
+  95% {
+    top: 10px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+
+@keyframes coinflip {
+  0% {
+    top: -350px;
+  }
+  75% {
+    top: 0px;
+  }
+  80% {
+    top: 20px;
+  }
+  85% {
+    top: 0px;
+  }
+  90% {
+    top: -10px;
+  }
+  95% {
+    top: 10px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+
 /* Chrome, Safari, Opera */
 @-webkit-keyframes slowlyAppear {
   from {opacity: 0;}
   to {opacity: 1;}
 }
 
-/* Standard syntax */
 @keyframes slowlyAppear {
   from {opacity: 0;}
   to {opacity: 1;}
+}
+
+.selectB:hover{
+  filter: brightness(200%);
+  -webkit-filter: brightness(200%);
+}
+.selectP:hover{
+  filter: brightness(135%);
+  -webkit-filter: brightness(135%);
 }

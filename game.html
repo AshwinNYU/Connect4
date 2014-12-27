@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html manifest="game.appcache" lang="en" ng-app="myApp">
+<html lang="en" ng-app="myApp">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Connect4</title>
+  <title>Reversi</title>
   <meta name="description" content="Connect4 game">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-touch.min.js"></script>
-
   <script src="game.js"></script>
   <script src="gameLogic.js"></script>
   <script src="http://yoav-zibin.github.io/emulator/gameService.js"></script>
@@ -18,17 +17,18 @@
   <link rel="stylesheet" type="text/css" href="game.css">
 </head>
 <body ng-controller="Ctrl">
-  <table>
-    <tr ng-repeat="row in board track by $index">
-      <td ng-repeat="cell in row track by $index"
-        ng-class="{cell: true, r: $index < 6, b: $parent.$index < 7}"
-        ng-click="cellClicked($parent.$index, $index)">
-        <!-- {{$parent.$index}} {{$index}} -->
-        <div ng-class="{slowlyAppear: shouldSlowlyAppear($parent.$index, $index)}">
-          {{cell}}
-        </div>
-      </td>
-    </tr>
-  </table>
+  <table cellpadding="0">
+    <tr ng-repeat="row in [0, 1, 2, 3, 4, 5]">
+      <td ng-repeat="col in [0, 1, 2, 3, 4, 5, 6]"
+      ng-click="cellClicked(row, col)">
+      <div ng-class="{cell:true}">
+        <img src = "img/block1.png" div ng-class ="{cell:true}" ng-show = "oddSum(row, col)">
+        <img src = "img/block1.png" ng-class = "{cell:true}" ng-show = "evenSum(row, col)">
+        <img src = "img/red.png" ng-class ="{posit2: true, rot: true, slowlyAppear: shouldSlowlyAppear(row, col)}" ng-show = "isBlack(row, col)">
+        <img src = "img/blue.png" ng-class ="{posit3: true,  rot: true, slowlyAppear: shouldSlowlyAppear(row, col)}" ng-show = "isWhite(row, col)">
+      </div>
+    </td>
+  </tr>
+</table>
 </body>
 </html>
